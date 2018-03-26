@@ -41,14 +41,14 @@ def logout():
     return render_template('index.html', session=session)
 
 
-@app.route('/singin', methods=['GET', 'POST'])
-def singin():
+@app.route('/singup', methods=['GET', 'POST'])
+def singup():
     if request.method == 'GET':
         if 'loged' in session:  # verificamos que existe la clave Loged
             if session['loged']:
                 return render_template('index.html', session=session)
         else:
-            return render_template('singin.html')
+            return render_template('singup.html')
     elif request.method == 'POST':
 
         res = users_db.find_one({'email': request.form['email']})
@@ -79,7 +79,7 @@ def singin():
         else:
 
             flash('Email ya Registrado!!!')
-            return render_template('singin.html', session=session)
+            return render_template('singup.html', session=session)
 
 
 @app.route('/save_session', methods=['POST'])
