@@ -27,6 +27,7 @@ def index():
         if 'div' in request.form:
             res = users_db.find_one({'email': session['email']})
             if res:
+
                 session['div'][request.form['div'].replace('#', '')] = request.form['color_div']
 
                 users_db.update({'email': session['email']},
@@ -37,6 +38,7 @@ def index():
         else:
             res = users_db.find_one({'email': request.form['email']})
             if res:
+
                 if res['pass'] == request.form['pass']:
                     session['loged'] = True
                     session['user'] = res['user']
@@ -47,6 +49,10 @@ def index():
                     flash('Usuario no existe o password invalido!')
                     return render_template('index.html', session=session)
 
+            else:
+                flash('The user don\'t exists or worng password!!!')
+                return render_template('index.html', session=session)
+
 
 @app.route('/logout')
 def logout():
@@ -54,14 +60,14 @@ def logout():
     return render_template('index.html', session=session)
 
 
-@app.route('/singup', methods=['GET', 'POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def singup():
     if request.method == 'GET':
         if 'loged' in session:  # verificamos que existe la clave Loged
             if session['loged']:
                 return render_template('index.html', session=session)
         else:
-            return render_template('singup.html')
+            return render_template('signup.html')
     elif request.method == 'POST':
 
         res = users_db.find_one({'email': request.form['email']})
@@ -87,7 +93,7 @@ def singup():
         else:
 
             flash('Email ya Registrado!!!')
-            return render_template('singup.html', session=session)
+            return render_template('signup.html', session=session)
 
 
 @app.route('/save_session', methods=['POST'])
