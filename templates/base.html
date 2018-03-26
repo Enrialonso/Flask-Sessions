@@ -13,6 +13,7 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
+
     <div class="container">
       <div class="col">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -28,14 +29,20 @@
               {% if session.loged %}
                 <li class="nav-item"><a class="nav-link" href="/logout">Log Out!</a></li>
               {% else %}
-                <li class="nav-item"><a class="nav-link" href="/singin">SingUp!</a></li>
+                <li class="nav-item"><a class="nav-link" href="/singup">Sing Up!</a></li>
               {% endif %}
             </ul>
           </div>
         </nav>
       </div>
-      <div class="col">{% block contenido %}{% endblock %}</div>
-      <div class="col"></div>
+
+      <div class="col">
+          {% block contenido %}{% endblock %}
+      </div>
+
+      <div class="col">
+
+      </div>
     </div>
   </body>
 </html>
