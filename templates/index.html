@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}Flask-Sessions/Home{% endblock %}
+{% block contenido %}
+  <br>
+
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1>Flask-Sessions(Tests)</h1>
+      <p>Small project for exampel to use the sessions on flask, Session: In addition to the request object there is
+          also a second object called session which allows you to store information specific to a user from one request
+          to the next. This is implemented on top of cookies for you and signs the cookies cryptographically. What this
+          means is that the user could look at the contents of your cookie but not modify it,
+          unless they know the secret key used for signing.</p>
+    </div>
+
+  </div>
+
+  <div class="container">
+    <div class="row">
+      {% if session.loged %}
+        <div class="container">
+          <div class="jumbotron">
+            <h1>Usuario: {{ session.user }}</h1>
+            <p>Email: {{ session.email }}</p>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-header">Click para cambiar el color!</div>
+                <div class="card-body" style="margin: auto;">
+                  <div id="div1" style="width: 100px; height: 100px; background: {{ session.div.div1 }}; border-radius: 15px"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-header">Click para cambiar el color!</div>
+                <div class="card-body" style="margin: auto;">
+                  <div id="div2" style="width: 100px; height: 100px; background: {{ session.div.div2 }}; border-radius: 15px"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+        <br><br><br>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-header">Click para cambiar el color!</div>
+                <div class="card-body" style="margin: auto;">
+                  <div id="div3" style="width: 100px; height: 100px; background: {{ session.div.div3 }}; border-radius: 15px"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-header">Click para cambiar el color!</div>
+                <div class="card-body" style="margin: auto;">
+                  <div id="div4" style="width: 100px; height: 100px; background: {{ session.div.div4 }}; border-radius: 15px"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+      {% else %}
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8" style=" border: dotted; border-width: 5px">
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ message }}</strong>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <div class="container">
+          <h2>Login form</h2>
+          <form action="/" method="POST">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Password:</label>
+              <input type="password" class="form-control" id="pass" placeholder="Enter password" name="pass">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
+    {% endif %}
+  </div>
+</div>
+<script src="/static/js/color.js"></script>
+{% endblock %}
