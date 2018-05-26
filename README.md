@@ -1,4 +1,4 @@
-# New Document
+# Falsk Sessions
 
 This example try to explain how to use the sessions on a small FLASK app, consist in a simple login storage in mongoDB for save the sessions parameters of the user. in the profile user is possible to change the colors of the divs just make a click over there.
 
