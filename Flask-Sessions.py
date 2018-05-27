@@ -8,11 +8,12 @@ db = client.flask_sesions
 users_db = db.users
 
 app = Flask(__name__)
-app.secret_key = 'a'  # Secert Key for encrypt de cookies
+app.secret_key = 'PleaseThisIsMySecret'  # Secert Key for encrypt de cookies
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    print(session)
     if request.method == 'GET':
         if 'loged' in session:  # verificamos que existe la clave Loged
             if session['loged']:
